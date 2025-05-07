@@ -1,0 +1,44 @@
+
+-- Definición de relaciones (simulación de inserción de tuplas)
+
+GDLB_emp1 = {
+  ('Albarran','Alejandra','Calidad',1,8577),
+  ('Becerra','Juana','Calidad',1,4217),
+  ('Olguín','Rodrigo','Sistemas',1,8575),
+  ('Aranda','Magaly','Gerencia',2,4674),
+  ('Bautista','Jazmin','Gerencia',3,8093)
+}
+
+GDLB_emp2 = {
+  ('Calvillo','Angel','Calidad',1,9000),
+  ('Perez','Juan','Calidad',1,18000),
+  ('Gutierrez','Monserrat','RH',3,45000),
+  ('Aranda','Magaly','Gerencia',2,4674)
+}
+
+-- Consultas
+
+-- Mostrar todas las tuplas
+GDLB_emp1
+GDLB_emp2
+
+-- Proyección
+π_apellido,nombre(GDLB_emp1)
+
+-- Selección
+π_apellido,nombre(σ_apellido LIKE 'A%'(GDLB_emp1))
+-- Alternativa si LIKE no es aceptado:
+-- π_apellido,nombre(σ_apellido[0]='A'(GDLB_emp1))
+
+-- Unión
+π_apellido,nombre(GDLB_emp1) ∪ π_apellido,nombre(GDLB_emp2)
+
+-- Diferencia
+π_apellido,nombre(GDLB_emp1) − π_apellido,nombre(GDLB_emp2)
+π_apellido,nombre(GDLB_emp2) − π_apellido,nombre(GDLB_emp1)
+
+-- Producto cartesiano
+π_GDLB_emp1.apellido,GDLB_emp1.nombre,GDLB_emp2.apellido,GDLB_emp2.nombre(GDLB_emp1 × GDLB_emp2)
+
+-- Intersección
+π_apellido,nombre(GDLB_emp1) ∩ π_apellido,nombre(GDLB_emp2)
